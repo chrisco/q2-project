@@ -9,3 +9,8 @@ a {
 h1 {
     color: red;
 }
+nav {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

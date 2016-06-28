@@ -3,8 +3,10 @@ var bcrypt = require('bcrypt');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
-passport.use(new LocalStrategy((username, password, done) => {
-    db.Contributor.findContributorByEmail(email).then((user, err) => {
+passport.use(new LocalStrategy({
+    usernameField: 'email'
+}, (username, password, done) => {
+    db.Contributor.findContributorByEmail(username).then((user, err) => {
         if (!user) {
             done("Error: User does not exist")
         } else if (user && bcrypt.compareSync(password, user.password)) {
@@ -21,14 +23,15 @@ module.exports = {
     addContributor: body => {
         var hash = bcrypt.hashSync(body.password, 8);
         body.password = hash;
-        return db.addContributor(body).then(user => {
+        return db.Contributor.addContributor(body).then(user => {
+            console.log(user, '********');
             return user.id;
         });
     },
     isLoggedIn: (req, res, next) => {
         if (req.session.userId) {
             res.redirect('/home', {
-              id: req.session.userID
+                id: req.session.userID
             });
         } else {
             next();

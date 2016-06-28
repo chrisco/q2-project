@@ -1,5 +1,5 @@
 exports.seed = function(knex, Promise) {
-	return knex.raw("TRUNCATE happy_hour, favorite, location, location, contributor, neighborhood RESTART IDENTITY CASCADE")
+	return knex.raw("TRUNCATE happy_hour, favorite, location, contributor, neighborhood RESTART IDENTITY CASCADE")
 		.then(function() {
 			return Promise.all([
 				// Inserts seed entries
@@ -18,8 +18,8 @@ exports.seed = function(knex, Promise) {
 					image_url: 'http://lizrichardsrealestate.com/wp-content/uploads/2014/02/lohi_lrg.jpg'
 				}),
 				knex('neighborhood').insert({
-					name: 'LoHi2',
-					image_url: 'http://lizrichardsrealestate.com/wp-content/uploads/2014/02/lohi_lrg.jpg'
+					name: 'Baker',
+					image_url: 'http://smartdenverrealestate.com/wp-content/uploads/2012/02/Broadway1.jpg'
 				})
 			]);
 		})
@@ -37,15 +37,15 @@ exports.seed = function(knex, Promise) {
 						url: 'http://denverbrider.com',
 						image_url: 'http://ecospace.com/wp-content/uploads/2015/12/IMG_0324.jpg',
 						contributor_id: findEmail('foo@bar.com', data[0]),
-						neighborhood_name: findNeighborhood('LoHi', data[1]) // DOESN"T WORK. WHY?
+						neighborhood_name: findNeighborhood('LoHi', data[1])
 					}),
 					knex('location').insert({
-						name: 'Brider2',
-						address: '1644 Platte St, Denver, CO 80202',
-						url: 'http://denverbrider.com',
-						image_url: 'http://ecospace.com/wp-content/uploads/2015/12/IMG_0324.jpg',
+						name: 'Adrift Tiki Bar & Grill',
+						address: '218 S Broadway, Denver, CO 80209',
+						url: 'http://adriftbar.com',
+						image_url: 'http://adriftbar.com/images/img_1933.jpg',
 						contributor_id: findEmail('foo2@bar.com', data[0]),
-						neighborhood_name: findNeighborhood('LoHi2', data[1])
+						neighborhood_name: findNeighborhood('Baker', data[1])
 					})
 				])
 				.then(function() {
@@ -65,22 +65,22 @@ exports.seed = function(knex, Promise) {
 						contributor_id: findEmail('foo@bar.com', data[0])
 					}),
 					knex('favorite').insert({
-						location_id: findLocation('Brider2', data[1]),
+						location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
 						contributor_id: findEmail('foo2@bar.com', data[0])
 					})
 				]),
 				knex('happy_hour').insert({
-					day: 'monday',
-					start: '16:00',
-					end: '15:00',
+					day: 'Sunday',
+					start: '15:00',
+					end: '18:00',
 					location_id: findLocation('Brider', data[1]),
 					contributor_id: findEmail('foo@bar.com', data[0])
 				}),
 				knex('happy_hour').insert({
-					day: 'monday',
-					start: '16:30',
-					end: '18:30',
-					location_id: findLocation('Brider2', data[1]),
+					day: 'Sunday',
+					start: '17:00',
+					end: '19:00',
+					location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
 					contributor_id: findEmail('foo2@bar.com', data[0])
 				})
 				.then(function() {

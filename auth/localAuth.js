@@ -12,7 +12,7 @@ passport.use(new LocalStrategy((username, password, done) => {
         } else {
             done("Error: Password is incorrect")
         }
-    })
+    });
 }));
 
 
@@ -23,13 +23,15 @@ module.exports = {
         body.password = hash;
         return db.addContributor(body).then(user => {
             return user.id;
-        })
+        });
     },
     isLoggedIn: (req, res, next) => {
         if (req.session.userId) {
-            res.redirect('/home');
+            res.redirect('/home', {
+              id: req.session.userID
+            });
         } else {
-            next()
+            next();
         }
     }
-}
+};

@@ -67,22 +67,120 @@ exports.seed = function(knex, Promise) {
 					knex('favorite').insert({
 						location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
 						contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Sunday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Sunday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Sunday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Monday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Tuesday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Wednesday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Thursday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Friday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Saturday',
+					  start: '15:00',
+					  end: '18:00',
+					  location_id: findLocation('Brider', data[1]),
+					  contributor_id: findEmail('foo@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Sunday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Monday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Tuesday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Wednesday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Thursday',
+					  start: '17:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Friday',
+					  start: '16:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
+					}),
+					knex('happy_hour').insert({
+					  day: 'Saturday',
+					  start: '16:00',
+					  end: '19:00',
+					  location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
+					  contributor_id: findEmail('foo2@bar.com', data[0])
 					})
-				]),
-				knex('happy_hour').insert({
-					day: 'Sunday',
-					start: '15:00',
-					end: '18:00',
-					location_id: findLocation('Brider', data[1]),
-					contributor_id: findEmail('foo@bar.com', data[0])
-				}),
-				knex('happy_hour').insert({
-					day: 'Sunday',
-					start: '17:00',
-					end: '19:00',
-					location_id: findLocation('Adrift Tiki Bar & Grill', data[1]),
-					contributor_id: findEmail('foo2@bar.com', data[0])
-				})
+				])
 				.then(function() {
 					return data;
 				});

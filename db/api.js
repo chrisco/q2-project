@@ -3,7 +3,8 @@ var knex = require('./knex');
 module.exports = {
     Contributor: {
         getContributorById: id => knex('contributor').where('id', id).first(),
-        addContributor: body => knex('contributor').insert(body, 'id')
+        findContributorByEmail: email => knex('contributor').where('email', email).first(),
+        addContributor: body => knex('contributor').insert(body).returning('*').first()
     },
     Favorite: {
 
@@ -12,7 +13,7 @@ module.exports = {
 
     },
     Neighborhood: {
-
+      knex('neighborhood').
     },
     HappyHour: {
 

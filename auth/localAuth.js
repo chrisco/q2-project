@@ -4,7 +4,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 passport.use(new LocalStrategy((username, password, done) => {
-    db.findUserByUsername(username).then((user, err) => {
+    db.Contributor.findContributorByEmail(email).then((user, err) => {
         if (!user) {
             done("Error: User does not exist")
         } else if (user && bcrypt.compareSync(password, user.password)) {
@@ -12,24 +12,26 @@ passport.use(new LocalStrategy((username, password, done) => {
         } else {
             done("Error: Password is incorrect")
         }
-    })
+    });
 }));
 
 
 module.exports = {
     passport: passport,
-    createUser: body => {
+    addContributor: body => {
         var hash = bcrypt.hashSync(body.password, 8);
         body.password = hash;
-        return db.createUser(body).then(id => {
-            return id[0];
-        })
+        return db.addContributor(body).then(user => {
+            return user.id;
+        });
     },
     isLoggedIn: (req, res, next) => {
         if (req.session.userId) {
-            res.redirect('/home');
+            res.redirect('/home', {
+              id: req.session.userID
+            });
         } else {
-            next()
+            next();
         }
     }
-}
+};

@@ -57,7 +57,6 @@
   </nav>
 {{/if}}
 </header>
-
 <main>
   {{#if id}}
   <h1>Hello user #{{id}}</h1>
@@ -131,10 +130,74 @@
                 </form>
               </div>
             </div>
+        <article class="row">
+          <div class="col-sm-3 col-sm-offset-3 text-center">
+            <p>Experience more features</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+                Sign Up Now
+            </button>
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="signUpModalLabel">Sign Up Today</h4>
+                  </div>
+                  <div class="modal-body text-left">
+                    <form action="/home/signup" method="post">
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input name="email" type="email" class="form-control" id="email" autofocus>
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input name="password" type="password" class="form-control" id="password">
+                      </div>
+                      <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="sign-up" class="btn btn-primary">Sign Up</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </article>
-  </section>
+          <div class="col-sm-3 text-center">
+            <p>Already a user?</p>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">Log In to your account</h4>
+                  </div>
+                  <div class="modal-body text-left">
+                    <form action="post" method="/edit/login">
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" value="">
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" value="">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
   {{/if}}
 </main>

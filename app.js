@@ -10,8 +10,11 @@ var localAuth = require('./auth/localAuth');
 
 require('dotenv').config();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var contributor = require('./routes/contributor');
+var favorite = require('./routes/favorite');
+var happyhour = require('./routes/happyhour');
+var home = require('./routes/home');
+var neighborhood = require('./routes/neighborhood');
 
 var app = express();
 
@@ -34,8 +37,11 @@ app.use(session({
 app.use(localAuth.passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/home', home);
+app.use('/neighborhood', neighborhood);
+app.use('/contributor', contributor);
+app.use('/favorite', favorite);
+app.use('/happyhour', happyhour);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

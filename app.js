@@ -38,6 +38,7 @@ app.use(session({
 app.use(localAuth.passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', home);
+app.use('/home', home);
 app.use('/neighborhood', neighborhood);
 app.use('/contributor', contributor);
 app.use('/favorite', favorite);

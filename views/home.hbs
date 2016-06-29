@@ -10,7 +10,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/home">
             <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
           </a>
         </div>
@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/home">
             <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
           </a>
         </div>
@@ -65,16 +65,24 @@
     <h1>Hello user #{{id}}</h1>
   {{else}}
     <!-- if the user is not logged in -->
-    <section class="container well well-lg public">
+    <section class="container well well-lg public site-description">
       <div class="row">
-        <h3>Welcome to Happy Tracker!</h3>
-        <p>Happy Tracker is a happy hour tracker for Denver neighborhoods. Users can search by neighborhood and location for happy hour details at various venues. Logged in users are able to filter by times, days, and neighborhood. Other features available
-          to logged in users is the ability to save their favorite happy hours so that they are easy to find again.</p>
+        <h1>Welcome to Happy Tracker!</h1>
+        <ul>
+          <p>A collection of happy hours for Denver neighborhoods</li>
+          <li>Search by neighborhood and location for happy hour details at various venues</li>
+          <li>Filter by times, days, and neighborhood.</li>
+          <li>Log in to...</li>
+            <ul>
+              <li>Make a collection of favorite Happy Hours</li>
+              <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+            </ul>
+        </ul>
       </div>
       <article class="row">
         <!-- sign up modal -->
         <div class="col-sm-3 col-sm-offset-3 text-center">
-          <p>Experience more features</p>
+          <p id="button-label">Become a User!</p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
             Sign Up Now
           </button>
@@ -111,7 +119,7 @@
         </div>
         <!-- Login modal -->
         <div class="col-sm-3 text-center">
-          <p>Already a user?</p>
+          <p id="button-label">Already a user?</p>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
           <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
             <div class="modal-dialog" role="document">
@@ -135,7 +143,7 @@
                       <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
                     </div>
                   </form>
-                </div>
+                 </div>
               </div>
             </div>
           </div>
@@ -143,4 +151,25 @@
       </article>
     </section>
   {{/if}}
+  <div class="container">
+    <div class="row">
+      {{#each neighborhood}}
+      <div class="col-sm-3">
+        <div class="thumbnail">
+        <div class="carousel slide">
+          <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
+             <div class="carousel-caption" style="background-color: black">
+             {{this.name}}
+             </div>
+          </a>   
+        </div>
+      </div>
+      </div>
+
+      {{/each}}
+    </div>
+
+  </div>
+
+
 </main>

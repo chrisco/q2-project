@@ -3,14 +3,15 @@ var router = express.Router();
 var db = require('../db/api');
 var localAuth = require('../auth/localAuth');
 // On home: authenticate,
-router.get('/', function(req, res) {
-    db.Neighborhood.getNeighborhoods().then(neighborhoods => {
-        console.log(neighborhoods);
-        res.render('home', {
-            id: req.session.userID,
-            neighborhood: neighborhoods
+router.get('/', localAuth.isLoggedIn, function(req, res) {
+    db.Neighborhood.getNeighborhoods()
+        .then(neighborhoods => {
+            res.render('home', {
+                email: req.session.email,
+                id: req.session.userID,
+                neighborhood: neighborhoods
+            });
         });
-    });
 });
 
 // login
@@ -22,10 +23,8 @@ router.post('/login', function(req, res, next) {
             });
         } else if (user) {
             req.session.userID = user.id;
-            res.render('home', {
-                email: user.email,
-                id: user.id
-            })
+            req.session.email = user.email;
+            res.redirect('/home');
         }
     })(req, res, next);
 })
@@ -43,10 +42,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
         } else {
             localAuth.addContributor(req.body).then(user => {
                 req.session.userID = user.id;
-                res.render('home', {
-                    email: user.email,
-                    id: user.id
-                });
+                res.redirect('/home');
             });
         }
     });

@@ -4,10 +4,14 @@ var db = require('../db/api');
 var localAuth = require('../auth/localAuth');
 
 
-router.get('/', function(req, res, next) {
-    res.render('neighborhood', {
-        id: req.session.userID
-    });
+router.get('/:name', function(req, res, next) {
+    db.HappyHour.getInfoByHoodName(req.params.name).then(list => {
+        res.render('neighborhood', {
+            id: req.session.userID,
+            happyhours: list,
+            neighborhood: req.params.name
+        });
+    })
 });
 
 module.exports = router;

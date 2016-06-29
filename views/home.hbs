@@ -68,7 +68,6 @@
     <section class="container well well-lg public site-description">
       <div class="row">
         <h1>Welcome to Happy Tracker!</h1>
-        <p>{{neighborhood.name}}</p>
         <ul>
           <p>A collection of happy hours for Denver neighborhoods</li>
           <li>Search by neighborhood and location for happy hour details at various venues</li>
@@ -156,15 +155,20 @@
     <div class="row">
       {{#each neighborhood}}
       <div class="col-sm-3">
+        <div class="thumbnail">
         <div class="carousel slide">
-          <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive"></a>
+          <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
              <div class="carousel-caption" style="background-color: black">
              {{this.name}}
              </div>
+          </a>   
         </div>
       </div>
+      </div>
+
       {{/each}}
     </div>
+
   </div>
 
 

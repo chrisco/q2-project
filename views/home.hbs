@@ -156,20 +156,16 @@
       {{#each neighborhood}}
       <div class="col-sm-3">
         <div class="thumbnail">
-        <div class="carousel slide">
-          <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
-             <div class="carousel-caption" style="background-color: black">
-             {{this.name}}
-             </div>
-          </a>   
+          <div class="carousel slide">
+            <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
+               <div class="carousel-caption" style="background-color: black">
+                 {{this.name}}
+               </div>
+            </a>
+          </div>
         </div>
       </div>
-      </div>
-
       {{/each}}
     </div>
-
   </div>
-
-
 </main>

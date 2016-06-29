@@ -8,9 +8,10 @@ module.exports = {
             knex('contributor').insert({
                 email: body.email,
                 password: body.password,
-                isadmin: "false" 
-            }).returning('id').then(id =>
-                knex('contributor').where('id', id).first())
+                isadmin: "false"
+            }).returning('id').then(id => {
+                return knex('contributor').where('id', id[0]).first()
+            })
     },
     Favorite: {
 

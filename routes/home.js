@@ -26,6 +26,10 @@ router.post('/login', function(req, res, next) {
     })(req, res, next);
 })
 
+router.get('/logout', (req, res, next) => {
+    req.session = null;
+    res.redirect('/home');
+})
 router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
     db.Contributor.findContributorByEmail(req.body.email).then(user => {
         if (user) {
@@ -35,6 +39,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
         } else {
             localAuth.addContributor(req.body).then(user => {
                 req.session.userID = user.id;
+                console.log(user, "inside router post");
                 res.render('home', {
                     email: user.email,
                     id: user.id

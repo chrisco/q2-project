@@ -1,0 +1,256 @@
+<header>
+  <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
+  {{#if id}}
+    <nav class="navbar navbar-default logged-in">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home">
+            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control input-sm" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default" id="search-btn">Search</button>
+          </form>
+          <div class="collapse navbar-collapse user-buttons">
+            <a type="button" class="btn btn-primary navbar-left" id="add-btn">Add a Happy Hour</a>
+            <a href='/home/logout' type="button" class="btn btn-default navbar-right">Log Out</a>
+            <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a>
+            <p class="navbar-text navbar-right">Logged in as {{email}}</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- if the user is not logged in this should be their navbar, with login button -->
+  {{else}}
+    <nav class="navbar navbar-default public">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/home">
+            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
+          </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control input-sm" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+          <button type="button" class="btn btn-default navbar-right" data-toggle="modal" data-target="#loginModal">Log In</button>
+        </div>
+      </div>
+    </nav>
+  {{/if}}
+</header>
+
+<main>
+  <!-- if the user is logged in -->
+  {{#if id}}
+    <h1>Hello user #{{id}}</h1>
+  {{else}}
+    <!-- if the user is not logged in -->
+    <section class="container well well-lg public site-description">
+      <div class="row">
+        <h1>Welcome to Happy Tracker!</h1>
+        <ul>
+          <p>A collection of happy hours for Denver neighborhoods</li>
+          <li>Search by neighborhood and location for happy hour details at various venues</li>
+          <li>Filter by times, days, and neighborhood.</li>
+          <li>Log in to...</li>
+            <ul>
+              <li>Make a collection of favorite Happy Hours</li>
+              <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+            </ul>
+        </ul>
+      </div>
+      <article class="row">
+        <!-- sign up modal -->
+        <div class="col-sm-3 col-sm-offset-3 text-center">
+          <p id="button-label">Become a User!</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+            Sign Up Now
+          </button>
+          <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="signUpModalLabel">Sign Up Today</h4>
+                </div>
+                <div class="modal-body text-left">
+                  <form action="/home/signup" method="post">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control" autofocus id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                      <label for="password2">Confirm Password</label>
+                      <input type="password" class="form-control" id="password2" value="">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" id="sign-up" class="btn btn-primary">Sign Up</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Login modal -->
+        <div class="col-sm-3 text-center">
+          <p id="button-label">Already a user?</p>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
+          <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="loginModalLabel">Log In to your account</h4>
+                </div>
+                <div class="modal-body text-left">
+                  <form action="/home/login" method="post">
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+  {{/if}}
+  <section class="row">
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>LoHi</h3>
+          </div>
+            <a href="/"><img src= "http://somethingdashing.com/wp-content/uploads/2015/01/Great-Location-4.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Lodo</h3>
+          </div>
+            <a href="/"><img src= "http://livedenverlife.com/wp-content/uploads/2013/10/TenZoD77EvSs2y.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Capitol Hill</h3>
+          </div>
+            <a href="/"><img src= " http://denver.thedrinknation.com/images/bars/irishsnugdenver.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Cheeseman Park</h3>
+          </div>
+            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706257/denver.cheesman.park.neighborhood.youtube.800.jpg" alt="..."></a>
+        </div>
+    </article>
+  </section>
+  <section class="row">
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Wash Park</h3>
+          </div>
+            <a href="/"><img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Washington_Park_Denver.JPG/2560px-Washington_Park_Denver.JPG" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Regis</h3>
+          </div>
+            <a href="/"><img src= "http://www.regis.edu/~/media/Images/Headers/Locations/ru_bld_low_06_0036_hd732x312.ashx?la=en" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Berkeley</h3>
+          </div>
+            <a href="/"><img src= "http://tennyson.geekgrl.net/wp-content/uploads/2014/01/berkeley-website-photo-tenn.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Five Points</h3>
+          </div>
+            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706268/five.points.denver.colorado.neighborhood.youtube.800.jpg" alt="..."></a>
+        </div>
+    </article>
+  </section>
+  <section class="row">
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>West Highland</h3>
+          </div>
+            <a href="/"><img src= "http://smartdenverrealestate.com/wp-content/uploads/2012/07/Highlands1.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Lodo</h3>
+          </div>
+            <a href="/"><img src= "http://livedenverlife.com/wp-content/uploads/2013/10/TenZoD77EvSs2y.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Capitol Hill</h3>
+          </div>
+            <a href="/"><img src= " http://denver.thedrinknation.com/images/bars/irishsnugdenver.jpg" alt="..."></a>
+        </div>
+    </article>
+    <article class="col-sm-3">
+        <div class="thumbnail">
+          <div class="caption">
+              <h3>Cheeseman Park</h3>
+          </div>
+            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706257/denver.cheesman.park.neighborhood.youtube.800.jpg" alt="..."></a>
+        </div>
+    </article>
+  </section>
+</main>

@@ -4,3 +4,9 @@ body {
 
 a {
   color: #00B7FF; }
+
+#fav-btn {
+  margin-left: 1rem; }
+
+.user-buttons {
+  margin: 3.5px; }

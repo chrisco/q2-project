@@ -24,8 +24,7 @@ module.exports = {
         var hash = bcrypt.hashSync(body.password, 8);
         body.password = hash;
         return db.Contributor.addContributor(body).then(user => {
-            console.log(user, '********');
-            return user.id;
+            return user;
         });
     },
     isLoggedIn: (req, res, next) => {

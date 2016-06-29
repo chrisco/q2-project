@@ -20,7 +20,7 @@ module.exports = {
 
     },
     Neighborhood: {
-        //knex('neighborhood').
+        getNeighborhoods: () => knex('neighborhood')
     },
     HappyHour: {
 

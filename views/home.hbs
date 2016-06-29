@@ -68,6 +68,7 @@
     <section class="container well well-lg public site-description">
       <div class="row">
         <h1>Welcome to Happy Tracker!</h1>
+        <p>{{neighborhood.name}}</p>
         <ul>
           <p>A collection of happy hours for Denver neighborhoods</li>
           <li>Search by neighborhood and location for happy hour details at various venues</li>
@@ -143,7 +144,7 @@
                       <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
                     </div>
                   </form>
-                </div>
+                 </div>
               </div>
             </div>
           </div>
@@ -151,106 +152,20 @@
       </article>
     </section>
   {{/if}}
-  <section class="row">
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>LoHi</h3>
-          </div>
-            <a href="/"><img src= "http://somethingdashing.com/wp-content/uploads/2015/01/Great-Location-4.jpg" alt="..."></a>
+  <div class="container">
+    <div class="row">
+      {{#each neighborhood}}
+      <div class="col-sm-3">
+        <div class="carousel slide">
+          <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive"></a>
+             <div class="carousel-caption" style="background-color: black">
+             {{this.name}}
+             </div>
         </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Lodo</h3>
-          </div>
-            <a href="/"><img src= "http://livedenverlife.com/wp-content/uploads/2013/10/TenZoD77EvSs2y.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Capitol Hill</h3>
-          </div>
-            <a href="/"><img src= " http://denver.thedrinknation.com/images/bars/irishsnugdenver.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Cheeseman Park</h3>
-          </div>
-            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706257/denver.cheesman.park.neighborhood.youtube.800.jpg" alt="..."></a>
-        </div>
-    </article>
-  </section>
-  <section class="row">
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Wash Park</h3>
-          </div>
-            <a href="/"><img src= "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Washington_Park_Denver.JPG/2560px-Washington_Park_Denver.JPG" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Regis</h3>
-          </div>
-            <a href="/"><img src= "http://www.regis.edu/~/media/Images/Headers/Locations/ru_bld_low_06_0036_hd732x312.ashx?la=en" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Berkeley</h3>
-          </div>
-            <a href="/"><img src= "http://tennyson.geekgrl.net/wp-content/uploads/2014/01/berkeley-website-photo-tenn.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Five Points</h3>
-          </div>
-            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706268/five.points.denver.colorado.neighborhood.youtube.800.jpg" alt="..."></a>
-        </div>
-    </article>
-  </section>
-  <section class="row">
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>West Highland</h3>
-          </div>
-            <a href="/"><img src= "http://smartdenverrealestate.com/wp-content/uploads/2012/07/Highlands1.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Lodo</h3>
-          </div>
-            <a href="/"><img src= "http://livedenverlife.com/wp-content/uploads/2013/10/TenZoD77EvSs2y.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Capitol Hill</h3>
-          </div>
-            <a href="/"><img src= " http://denver.thedrinknation.com/images/bars/irishsnugdenver.jpg" alt="..."></a>
-        </div>
-    </article>
-    <article class="col-sm-3">
-        <div class="thumbnail">
-          <div class="caption">
-              <h3>Cheeseman Park</h3>
-          </div>
-            <a href="/"><img src= "http://images1.westword.com/imager/u/745xauto/6706257/denver.cheesman.park.neighborhood.youtube.800.jpg" alt="..."></a>
-        </div>
-    </article>
-  </section>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+
 </main>

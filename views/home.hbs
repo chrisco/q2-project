@@ -22,7 +22,7 @@
             <button type="submit" class="btn btn-default" id="search-btn">Search</button>
           </form>
           <div class="collapse navbar-collapse user-buttons">
-            <a type="button" class="btn btn-primary navbar-left" id="add-btn">Add a Happy Hour</a>
+            <a type="button" class="btn btn-primary navbar-left" id="add-btn" data-toggle="modal" data-target="#create-hh">Add a Happy Hour</a>
             <a href='/home/logout' type="button" class="btn btn-default navbar-right">Log Out</a>
             <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a>
             <p class="navbar-text navbar-right">Logged in as {{email}}</p>
@@ -30,6 +30,63 @@
         </div>
       </div>
     </nav>
+    <!-- BEGIN CREATE HAPPY HOUR MODAL -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="create-hh">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4>Add a Happy Hour</h4>
+          </div>
+          <div class="modal-body">
+            <form action="#" method="post">
+              <div class="form-group">
+                <label for="venue_input">Venue Name</label>
+                <input type="text" name="name" id="venue_input" placeholder="Venue name">
+              </div>
+              <div class="form-group">
+                <label for="image_url_input">Image URL</label>
+                <input type="url" name="image_url" id="image_url_input" placeholder="Paste image URL here">
+              </div>
+              <div class="dropdown">
+                <select>
+                  <option value="">Select Neighborhood</option>
+                  {{#each neighborhood}}
+                  <option value="{{this.name}}">{{this.name}}</option>
+                  {{/each}}
+                </select>
+            </div>
+              <div class="form-group">
+                <label for="address_input">Address</label>
+                <input name="address" size=60 id="address_input"></input>
+              </div>
+              <div class="checkbox">
+                <label><input type="checkbox" name="day" value="Sunday">Sunday</label>
+                <label><input type="checkbox" name="day" value="Monday">Monday</label>
+                <label><input type="checkbox" name="day" value="Tuesday">Tuesday</label>
+                <label><input type="checkbox" name="day" value="Wednesday">Wednesday</label>
+                <label><input type="checkbox" name="day" value="Thursday">Thursday</label>
+                <label><input type="checkbox" name="day" value="Friday">Friday</label>
+                <label><input type="checkbox" name="day" value="Sunday">Saturday</label>
+              </div>
+              <div class="form-group">
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" class="form-control" id="start_time">
+              </div>
+              <div class="form-group">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" class="form-control" id="end_time">
+              </div>
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Add Happy Hour</button>
+                  </div>
+            </form>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- END CREATE HAPPY HOUR MODAL -->
     <!-- if the user is not logged in this should be their navbar, with login button -->
   {{else}}
     <nav class="navbar navbar-default public">
@@ -60,10 +117,7 @@
 </header>
 
 <main>
-  <!-- if the user is logged in -->
-  {{#if id}}
-    <h1>Hello user #{{id}}</h1>
-  {{else}}
+  {{#unless id}}
     <!-- if the user is not logged in -->
     <section class="container well well-lg public site-description">
       <div class="row">
@@ -150,7 +204,7 @@
         </div>
       </article>
     </section>
-  {{/if}}
+  {{/unless}}
   <div class="container">
     <div class="row">
       {{#each neighborhood}}

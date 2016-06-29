@@ -65,7 +65,11 @@
   <section class="container well well-lg public">
     <div class="row">
       <h3>Welcome to Happy Tracker!</h3>
-      <p>Happy Tracker is a happy hour tracker for Denver neighborhoods. Users can search by neighborhood and location for happy hour details at various venues. Logged in users are able to filter by times, days, and neighborhood. Other features available to logged in users is the ability to save their favorite happy hours so that they are easy to find again.</p>
+      <p>Happy Tracker is a happy hour tracker for Denver neighborhoods. Users
+        can search by neighborhood and location for happy hour details at
+        various venues. Logged in users are able to filter by times, days, and
+        neighborhood. Other features available to logged in users is the ability
+        to save their favorite happy hours so that they are easy to find again.</p>
     </div>
     <article class="row">
       <!-- sign up modal -->
@@ -140,8 +144,25 @@
   </section>
   {{/unless}}
   <!-- This is what everyone sees whether logged in or not -->
-  <!-- confirm that this works with routes -->
-  <h2>{{neighborhood.name}}</h2>
+  <section class="container">
+    <h2>{{neighborhood.name}}</h2>
+    <div class="row">
 
-  
+      {{#each location}}
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img class="img-responsive venue-img" src="{{location.image_url}}">
+          <div class="caption">
+            <h3>{{location.name}}</h3>
+            <p>Days: {{happy_hour.day}}</p>
+            <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p>
+            <p>{{location.url}}</p>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+    </div>
+  </section>
+
 </main>

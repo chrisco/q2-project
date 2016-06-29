@@ -4,8 +4,12 @@ var db = require('../db/api');
 var localAuth = require('../auth/localAuth');
 // On home: authenticate,
 router.get('/', function(req, res) {
-    res.render('home', {
-        id: req.session.userID
+    db.Neighborhood.getNeighborhoods().then(neighborhoods => {
+        console.log(neighborhoods);
+        res.render('home', {
+            id: req.session.userID,
+            neighborhood: neighborhoods
+        });
     });
 });
 
@@ -39,7 +43,6 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
         } else {
             localAuth.addContributor(req.body).then(user => {
                 req.session.userID = user.id;
-                console.log(user, "inside router post");
                 res.render('home', {
                     email: user.email,
                     id: user.id

@@ -46,16 +46,16 @@ exports.seed = function(knex, Promise) {
                     image_url: 'http://images1.westword.com/imager/historians-ale-house/u/original/5181716/9874717.0.jpg'
                 }),
                 knex('neighborhood').insert({
-                    name: 'RiNo',
-                    image_url: 'http://boojblogbucket.s3-us-west-1.amazonaws.com/kentwood/2016/04/29204230/RINO-2.jpg'
-                }),
-                knex('neighborhood').insert({
                     name: 'Slaon Lake',
                     image_url: 'http://temp.2centsmobile.com/wp-content/gallery/sloans-lake/denver-col129.jpg'
                 }),
                 knex('neighborhood').insert({
                     name: 'City Park',
                     image_url: 'http://svcdn.simpleviewinc.com/v3/cache/www_denver_org/41F3364F0BA21B5A9F9530D0DB768206.jpg'
+                }),
+                knex('neighborhood').insert({
+                    name: 'Berkeley',
+                    image_url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Berkeley_Lake_Park.JPG'
                 }),
                 knex('neighborhood').insert({
                     name: 'Cherry Creek',
@@ -104,7 +104,7 @@ exports.seed = function(knex, Promise) {
                         neighborhood_name: findNeighborhood('Highlands', data[1])
                     }),
                     knex('location').insert({
-                        name: 'Denver Beer Co'
+                        name: 'Denver Beer Co',
                         address: '1695 Platte St, Denver, CO 80202',
                         url: 'http://denverbeerco.com/',
                         image_url: 'http://drinks.seriouseats.com/images/193057-denver-beer-co-exterior.jpg',
@@ -130,7 +130,7 @@ exports.seed = function(knex, Promise) {
                     knex('location').insert({
                         name: 'Highland Tavern',
                         address: '3400 Navajo St, Denver, CO 80211',
-                        url: 'http://www.highlandtavern.com/',
+                        url: 'http://www.highlandtavern.com',
                         image_url: 'http://images1.westword.com/imager/highland-tavern/u/original/5168100/5532194.0.jpg',
                         contributor_id: findEmail('foo@bar.com', data[0]),
                         neighborhood_name: findNeighborhood('Highlands', data[1])

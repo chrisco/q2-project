@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/api');
-var localAuth = require('../auth/localAuth')
-    // On home: authenticate,
-router.get('/', function(req, res, next) {
+var localAuth = require('../auth/localAuth');
+// On home: authenticate,
+router.get('/', function(req, res) {
     res.render('home', {
         id: req.session.userID
     });

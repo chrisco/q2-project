@@ -39,6 +39,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
         } else {
             localAuth.addContributor(req.body).then(user => {
                 req.session.userID = user.id;
+                console.log(user, "inside router post");
                 res.render('home', {
                     email: user.email,
                     id: user.id

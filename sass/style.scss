@@ -15,3 +15,27 @@ a {
 .user-buttons{
   margin: 3.5px ;
 }
+
+.site-description {
+  width: 100%;
+  padding: {
+    left: 25%;
+    right: 25%;
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 3rem;
+  }
+  li {
+    font-size: 1.8rem;
+  }
+}
+
+ul {
+  list-style: none;
+}
+#button-label {
+  font-size: 2rem;
+}

@@ -25,6 +25,7 @@ module.exports = {
     },
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
-            .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).then(locationsByHoodName => locationsByHoodName))
+            .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').
+then(locationsByHoodName => locationsByHoodName))
     }
 };

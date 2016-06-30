@@ -1,3 +1,6 @@
+#map {
+  height: 50vh; }
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding-bottom: 1rem; }
@@ -28,6 +31,7 @@ ul {
 #button-label {
   font-size: 2rem; }
 
+<<<<<<< HEAD
 .carousel-caption {
   font-size: 2.5rem;
   text-shadow: 2px 2px black; }
@@ -38,3 +42,20 @@ ul {
 
 input[type=checkbox] {
   display: inline; }
+=======
+.star {
+  border-color: #e65c00;
+  color: #e65c00;
+  background-color: white; }
+  .star:hover {
+    color: #e65c00;
+    font-weight: bold; }
+
+.favorite {
+  border-color: #e65c00;
+  color: white;
+  background-color: #e65c00; }
+  .favorite:hover {
+    font-weight: normal;
+    color: white; }
+>>>>>>> 30ba6a7ca31bec474f606b3a896c9e5e11660a1b

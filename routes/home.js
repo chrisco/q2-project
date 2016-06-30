@@ -57,7 +57,7 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
 
 router.post('/addhh', function(req, res, next) {
   console.log("anything? ", req.body.neighborhood_name, req.body.name);
-  db.location.addLocation(req.body, req.session.userID).then(function (id) {
+  db.Location.addLocation(req.body, req.session.userID).then(function (id) {
     console.log(id);
     db.HappyHour.addHappyHour(req.body).then(function (addhh) {
       res.render('/home')

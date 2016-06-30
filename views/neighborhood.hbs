@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../javascripts/favorite.js"></script>
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
   {{#if id}}
@@ -143,23 +146,30 @@
   <!-- This is what everyone sees whether logged in or not -->
   <section class="container">
     <h2>{{neighborhood}}</h2>
+    {{#each happyhours}}
     <div class="row">
-
-      {{#each happyhours}}
+      {{#each this}}
         <div class="col-sm-3">
           <div class="thumbnail">
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
+
+              <form action="/favorite/{{this.name}}" method="post">
+                <input class="hidden" name="location_id" value="{{this.id}}"></input>
+                <button type="submit" class="btn btn-xs pull-right star">Favorite
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+              </form>
+
               <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
-              {{!-- <p>Days: {{happy_hour.day}}</p>
-              <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> --}}
+              <!-- <p>Days: {{happy_hour.day}}</p>
+              <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
               <a href="{{this.url}}"><p>{{this.url}}</p></a>
             </div>
           </div>
         </div>
-      {{/each}}
-
+        {{/each}}
     </div>
+    {{/each}}
   </section>
-
 </main>

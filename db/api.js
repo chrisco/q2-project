@@ -14,7 +14,11 @@ module.exports = {
             })
     },
     Favorite: {
-
+      addUserFavorite: (location, user) => knex('favorite').insert({
+          location_id: location,
+          contributor_id: user
+        }),
+      getNeighborhoodByLocation: (location_name)=> knex('location').select('neighborhood_name').where({name: location_name}).first()
     },
     Location: {
         getLocations: () => knex('location')

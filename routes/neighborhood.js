@@ -5,10 +5,18 @@ var localAuth = require('../auth/localAuth');
 
 
 router.get('/:name', function(req, res, next) {
-    db.HappyHour.getInfoByHoodName(req.params.name).then(list => {
+  console.log(req.params.name);
+    db.HappyHour.getInfoByHoodName(req.params.name)
+    .then(list => {
+      splitList=list.reduce((result,item, i) => {
+          var index = Math.floor(i/4)
+          result[index] = result[index] || []
+          result[index].push(item)
+          return result
+      }, [])
         res.render('neighborhood', {
             id: req.session.userID,
-            happyhours: list,
+            happyhours: splitList,
             neighborhood: req.params.name
         });
     })

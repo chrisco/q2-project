@@ -48,14 +48,16 @@
                 <label for="image_url_input">Image URL</label>
                 <input type="url" name="image_url" id="image_url_input" placeholder="Paste image URL here">
               </div>
-              <div class="dropdown">
-                <select>
-                  <option value="">Select Neighborhood</option>
-                  {{#each neighborhood}}
-                  <option value="{{this.name}}">{{this.name}}</option>
-                  {{/each}}
-                </select>
-            </div>
+              <div class="form-group">
+                <label for="neighborhoods">Select Neighborhood:</label>
+                  <select class="form-control" id="neighborhoods">
+                    {{#each neighborhood}}
+                      {{#each this}}
+                      <option value="{{this.name}}">{{this.name}}</option>
+                      {{/each}}
+                    {{/each}}
+                  </select>
+              </div>
               <div class="form-group">
                 <label for="address_input">Address</label>
                 <input name="address" size=60 id="address_input"></input>
@@ -215,7 +217,7 @@
         <div class="thumbnail">
           <div class="carousel slide">
             <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
-               <div class="carousel-caption" style="background-color: black">
+               <div class="carousel-caption">
                  {{this.name}}
                </div>
             </a>

@@ -6,10 +6,16 @@ var localAuth = require('../auth/localAuth');
 router.get('/', localAuth.isLoggedIn, function(req, res) {
     db.Neighborhood.getNeighborhoods()
         .then(neighborhoods => {
+            splitHoods=neighborhoods.reduce((result,item, i) => {
+              var index = Math.floor(i/4)
+              result[index] = result[index] || []
+              result[index].push(item)
+              return result
+          }, [])
             res.render('home', {
                 email: req.session.email,
                 id: req.session.userID,
-                neighborhood: neighborhoods
+                neighborhood: splitHoods
             });
         });
 });

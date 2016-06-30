@@ -143,23 +143,23 @@
   <!-- This is what everyone sees whether logged in or not -->
   <section class="container">
     <h2>{{neighborhood}}</h2>
+    {{#each happyhours}}
     <div class="row">
-
-      {{#each happyhours}}
+      {{#each this}}
         <div class="col-sm-3">
           <div class="thumbnail">
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
               <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
-              {{!-- <p>Days: {{happy_hour.day}}</p>
-              <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> --}}
+              <!-- <p>Days: {{happy_hour.day}}</p>
+              <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
               <a href="{{this.url}}"><p>{{this.url}}</p></a>
             </div>
           </div>
         </div>
-      {{/each}}
-
+        {{/each}}
     </div>
+    {{/each}}
   </section>
 
 </main>

@@ -39,10 +39,14 @@
             <h4>Add a Happy Hour</h4>
           </div>
           <div class="modal-body">
-            <form action="#" method="post">
+            <form action="/home/addhh" method="post">
               <div class="form-group">
                 <label for="venue_input">Venue Name</label>
                 <input type="text" name="name" id="venue_input" placeholder="Venue name">
+              </div>
+              <div class="form-group">
+                <label for="url_input">Venue URL</label>
+                <input type="url" name="url" id="url_input" placeholder="Venue URL here">
               </div>
               <div class="form-group">
                 <label for="image_url_input">Image URL</label>
@@ -50,7 +54,7 @@
               </div>
               <div class="form-group">
                 <label for="neighborhoods">Select Neighborhood:</label>
-                  <select class="form-control" id="neighborhoods">
+                  <select name="neighborhood_name" class="form-control" id="neighborhoods">
                     {{#each neighborhood}}
                       {{#each this}}
                       <option value="{{this.name}}">{{this.name}}</option>
@@ -63,25 +67,53 @@
                 <input name="address" size=60 id="address_input"></input>
               </div>
               <div class="checkbox">
-                <label><input type="checkbox" name="day" value="Sunday">Sunday</label>
-                <label><input type="checkbox" name="day" value="Monday">Monday</label>
-                <label><input type="checkbox" name="day" value="Tuesday">Tuesday</label>
-                <label><input type="checkbox" name="day" value="Wednesday">Wednesday</label>
-                <label><input type="checkbox" name="day" value="Thursday">Thursday</label>
-                <label><input type="checkbox" name="day" value="Friday">Friday</label>
-                <label><input type="checkbox" name="day" value="Sunday">Saturday</label>
-              </div>
-              <div class="form-group">
+                <label><input type="checkbox" name="day" value="Sunday">Sun</label>
                 <label for="start_time">Start Time&colon; </label>
-                <input type="time" name="start" class="form-control" id="start_time">
-              </div>
-              <div class="form-group">
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
                 <label for="end_time">End Time&colon; </label>
-                <input type="time" name="end" class="form-control" id="end_time">
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Monday">Mon</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Tuesday">Tues</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Wednesday">Wed</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Thursday">Thurs</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Friday">Fri</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+                <label><input type="checkbox" name="day" value="Sunday">Sat</label>
+                <label for="start_time">Start Time&colon; </label>
+                <input type="time" name="start" value="17:00" class="form-control" id="start_time">
+                <label for="end_time">End Time&colon; </label>
+                <input type="time" name="end" value="17:00" class="form-control" id="end_time">
+                <br>
+              </div>
               </div>
                   <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Happy Hour</button>
+                        <button type="submit" id="add-hh" class="btn btn-primary">Add Happy Hour</button>
                   </div>
             </form>
           </div>

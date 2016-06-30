@@ -30,3 +30,30 @@ ul {
 
 #button-label {
   font-size: 2rem; }
+
+.star {
+  border-color: #e65c00;
+  color: #e65c00;
+  background-color: white; }
+  .star:hover {
+    color: #e65c00;
+    font-weight: bold; }
+
+.favorite {
+  border-color: #e65c00;
+  color: white;
+  background-color: #e65c00; }
+  .favorite:hover {
+    font-weight: normal;
+    color: white; }
+
+.carousel-caption {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px black; }
+
+#start_time, #end_time {
+  width: 26.5%;
+  display: inline; }
+
+input[type=checkbox] {
+  display: inline; }

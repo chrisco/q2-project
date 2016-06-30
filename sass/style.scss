@@ -36,3 +36,37 @@ ul {
 #button-label {
     font-size: 2rem;
 }
+
+.star{
+  border-color: hsl(24, 100%, 45%);
+  color: hsl(24, 100%, 45%);
+  background-color: white;
+  &:hover{
+    color:hsl(24, 100%, 45%);
+    font-weight: bold;
+  }
+}
+
+.favorite{
+  border-color: hsl(24, 100%, 45%);
+  color: white;
+  background-color: hsl(24, 100%, 45%);
+  &:hover{
+    font-weight: normal;
+    color: white;
+  }
+}
+.carousel-caption {
+  font-size: 2.5rem;
+  text-shadow: 2px 2px black;
+}
+#start_time, #end_time {
+  width: 26.5%;
+  display: inline;
+}
+input[type=checkbox] {
+  display: inline;
+}
+a img {
+  // background-color: rgba(0, 0, 0, 10%);
+}

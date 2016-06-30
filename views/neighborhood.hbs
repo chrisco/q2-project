@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
 
 <script type="text/javascript" src="/javascripts/googlemap.js">
@@ -5,6 +6,11 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key={{api}}callback=initMap" async defer></script>
 
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../javascripts/favorite.js"></script>
+>>>>>>> bc7b749a0885d182d4afeb05610bb62cf4106092
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
   {{#if id}}
@@ -242,24 +248,39 @@
   <!-- This is what everyone sees whether logged in or not -->
   <section class="container">
     <h2>{{neighborhood}}</h2>
+    {{#each happyhours}}
     <div class="row">
-
-      {{#each happyhours}}
+      {{#each this}}
         <div class="col-sm-3">
           <div class="thumbnail">
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
+<<<<<<< HEAD
               <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>{{!-- <p>Days: {{happy_hour.day}}
               </p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> --}}
               <a href="{{this.url}}">
                 <p>{{this.url}}</p>
               </a>
+=======
+
+              <form action="/favorite/{{this.name}}" method="post">
+                <input class="hidden" name="location_id" value="{{this.id}}"></input>
+                <button type="submit" class="btn btn-xs pull-right star">Favorite
+                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                </button>
+              </form>
+
+              <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
+              <!-- <p>Days: {{happy_hour.day}}</p>
+              <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
+              <a href="{{this.url}}"><p>{{this.url}}</p></a>
+>>>>>>> bc7b749a0885d182d4afeb05610bb62cf4106092
             </div>
           </div>
         </div>
-      {{/each}}
-
+        {{/each}}
     </div>
+    {{/each}}
   </section>
 </main>

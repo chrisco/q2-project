@@ -154,7 +154,7 @@
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
 
-              <form action="/favorite" method="post">
+              <form action="/favorite/{{this.name}}" method="post">
                 <input class="hidden" name="location_id" value="{{this.id}}"></input>
                 <button type="submit" class="btn btn-xs pull-right star">Favorite
                   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>

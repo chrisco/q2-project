@@ -5,11 +5,12 @@ $(document).ready(function(){
     });
 })
 
-// $.get('/favorite/getId').done(id =>{
+// $.get('/favorite/getUserId').done(id =>{
 //     user=id;
 //     console.log(user);
 //
 //     $('.star').click(function(){
+//       getLocId()
 //         console.log(location.name);
 //         $.post('/favorite',{
 //             contributor_id: user,

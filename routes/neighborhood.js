@@ -5,6 +5,7 @@ var localAuth = require('../auth/localAuth');
 
 
 router.get('/:name', function(req, res, next) {
+  console.log(req.params.name);
     db.HappyHour.getInfoByHoodName(req.params.name)
     .then(list => {
       splitList=list.reduce((result,item, i) => {

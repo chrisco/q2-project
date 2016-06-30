@@ -6,7 +6,7 @@ var localAuth = require('../auth/localAuth');
 router.get('/', localAuth.isLoggedIn, function(req, res) {
     db.Neighborhood.getNeighborhoods()
         .then(neighborhoods => {
-            splitHoods=neighborhoods.reduce((result,item, i) => {
+            splitHoods = neighborhoods.reduce((result,item, i) => {
               var index = Math.floor(i/4)
               result[index] = result[index] || []
               result[index].push(item)
@@ -52,6 +52,28 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
             });
         }
     });
+})
+
+
+router.post('/addhh', function(req, res, next) {
+  var location = {
+    name: req.body.name,
+    url: req.body.url,
+    image_url: req.body.image_url,
+    address: req.body.address,
+    contributor_id: req.session.userID
+  }
+  knex('location').insert(location, 'id').then(function (id) {
+    var addhh = {
+      day: req.body.day,
+      start_time: req.body.start,
+      end_time: req.body.end,
+      location_id: id[0]
+    }
+    knex('happy_hour').insert(addhh).then(function () {
+      res.render('/:name')
+    })
+  })
 })
 
 module.exports = router;

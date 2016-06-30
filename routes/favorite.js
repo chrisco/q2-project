@@ -14,4 +14,9 @@ router.get('/getId', function(req, res, next) {
     res.json(req.session.userID)
 })
 
+router.post('/', function(req, res, next){
+    console.log(req.body);
+    
+})
+
 module.exports = router;

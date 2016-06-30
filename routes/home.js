@@ -56,24 +56,13 @@ router.post('/signup', localAuth.isLoggedIn, function(req, res, next) {
 
 
 router.post('/addhh', function(req, res, next) {
-  var location = {
-    name: req.body.name,
-    url: req.body.url,
-    image_url: req.body.image_url,
-    address: req.body.address,
-    contributor_id: req.session.userID
-  }
-  knex('location').insert(location, 'id').then(function (id) {
-    var addhh = {
-      day: req.body.day,
-      start_time: req.body.start,
-      end_time: req.body.end,
-      location_id: id[0]
-    }
-    knex('happy_hour').insert(addhh).then(function () {
-      res.render('/:name')
+  console.log("anything? ", req.body.neighborhood_name, req.body.name);
+  db.location.addLocation(req.body, req.session.userID).then(function (id) {
+    console.log(id);
+    db.HappyHour.addHappyHour(req.body).then(function (addhh) {
+      res.render('/home')
     })
   })
-})
+});
 
 module.exports = router;

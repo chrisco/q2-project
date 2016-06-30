@@ -50,9 +50,10 @@
               </div>
               <div class="dropdown">
                 <select>
-                  <option value="">Select Neighborhood</option>
                   {{#each neighborhood}}
+                  {{#each this}}
                   <option value="{{this.name}}">{{this.name}}</option>
+                  {{/each}}
                   {{/each}}
                 </select>
             </div>
@@ -215,7 +216,7 @@
         <div class="thumbnail">
           <div class="carousel slide">
             <a href="/neighborhood/{{this.name}}"><img src="{{this.image_url}}" class="img-responsive">
-               <div class="carousel-caption" style="background-color: black">
+               <div class="carousel-caption">
                  {{this.name}}
                </div>
             </a>

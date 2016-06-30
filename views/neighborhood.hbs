@@ -1,3 +1,10 @@
+<script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="/javascripts/googlemap.js">
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{api}}callback=initMap" async defer></script>
+
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
   {{#if id}}
@@ -59,8 +66,100 @@
   {{/if}}
 </header>
 
+
+<div id="map">
+
+</div>
+
 <main>
   {{#unless id}}
+      <!-- if the user is not logged in -->
+      <section class="container well well-lg public site-description">
+        <div class="row">
+          <h1>Welcome to Happy Tracker!</h1>
+          <ul>
+            <p>A collection of happy hours for Denver neighborhoods</li>
+            <li>Search by neighborhood and location for happy hour details at various venues</li>
+            <li>Filter by times, days, and neighborhood.</li>
+            <li>Log in to...</li>
+              <ul>
+                <li>Make a collection of favorite Happy Hours</li>
+                <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+              </ul>
+          </ul>
+        </div>
+        <article class="row">
+          <!-- sign up modal -->
+          <div class="col-sm-3 col-sm-offset-3 text-center">
+            <p id="button-label">Become a User!</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
+              Sign Up Now
+            </button>
+            <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="signUpModalLabel">Sign Up Today</h4>
+                  </div>
+                  <div class="modal-body text-left">
+                    <form action="/home/signup" method="post">
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" autofocus id="email" name="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                      </div>
+                      <div class="form-group">
+                        <label for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" value="">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="sign-up" class="btn btn-primary">Sign Up</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Login modal -->
+          <div class="col-sm-3 text-center">
+            <p id="button-label">Already a user?</p>
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="loginModalLabel">Log In to your account</h4>
+                  </div>
+                  <div class="modal-body text-left">
+                    <form action="/home/login" method="post">
+                      <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                      </div>
+                      <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="sign-up" class="btn btn-primary">Log In</button>
+                      </div>
+                    </form>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    {{/unless}}
     <!-- if the user is not logged in/there is no id, they still see call to action and description -->
     <section class="container well well-lg public">
       <div class="row">
@@ -150,10 +249,12 @@
           <div class="thumbnail">
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
-              <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
-              {{!-- <p>Days: {{happy_hour.day}}</p>
+              <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>{{!-- <p>Days: {{happy_hour.day}}
+              </p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> --}}
-              <a href="{{this.url}}"><p>{{this.url}}</p></a>
+              <a href="{{this.url}}">
+                <p>{{this.url}}</p>
+              </a>
             </div>
           </div>
         </div>
@@ -161,5 +262,4 @@
 
     </div>
   </section>
-
 </main>

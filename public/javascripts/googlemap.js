@@ -9,7 +9,7 @@ function initMap() {
         center: myLatLng
     });
 
-    $.get('/happyhour/getLocations').done(locations => {
+    $.get('/neighborhood/get/locations').done(locations => {
             var geocoder = new google.maps.Geocoder();
 
 

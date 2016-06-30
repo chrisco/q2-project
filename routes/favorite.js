@@ -10,4 +10,8 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/getId', function(req, res, next) {
+    res.json(req.session.userID)
+})
+
 module.exports = router;

@@ -1,3 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../javascripts/favorite.js"></script>
 <header>
   <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
   {{#if id}}
@@ -150,6 +153,11 @@
           <div class="thumbnail">
             <img class="img-responsive venue-img" src="{{this.image_url}}">
             <div class="caption">
+
+              <div class="btn btn-xs pull-right star">Favorite
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </div>
+
               <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
               <!-- <p>Days: {{happy_hour.day}}</p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
@@ -161,5 +169,4 @@
     </div>
     {{/each}}
   </section>
-
 </main>

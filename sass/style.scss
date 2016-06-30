@@ -39,3 +39,23 @@ ul {
 #button-label {
   font-size: 2rem;
 }
+
+.star{
+  border-color: hsl(24, 100%, 45%);
+  color: hsl(24, 100%, 45%);
+  background-color: white;
+  &:hover{
+    color:hsl(24, 100%, 45%);
+    font-weight: bold;
+  }
+}
+
+.favorite{
+  border-color: hsl(24, 100%, 45%);
+  color: white;
+  background-color: hsl(24, 100%, 45%);
+  &:hover{
+    font-weight: normal;
+    color: white;
+  }
+}

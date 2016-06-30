@@ -1,80 +1,35 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="../javascripts/favorite.js"></script>
-<header>
-  <!-- If the user is logged in, this should be the navbar with add and fav buttons -->
-  {{#if id}}
-    <nav class="navbar navbar-default logged-in">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/home">
-            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control input-sm" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default" id="search-btn">Search</button>
-          </form>
-          <div class="collapse navbar-collapse user-buttons">
-            <a type="button" class="btn btn-primary navbar-left" id="add-btn">Add a Happy Hour</a>
-            <a href='/home/logout' type="button" class="btn btn-default navbar-right">Log Out</a>
-            <a type="button" class="btn btn-info navbar-right" id="fav-btn">Your Favorites</a>
-            <p class="navbar-text navbar-right">Logged in as {{email}}</p>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- if the user is not logged in this should be their navbar, with login button -->
-  {{else}}
-    <nav class="navbar navbar-default public">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/home">
-            <span class="glyphicon glyphicon-glass" aria-hidden="true"></span> Happy Tracker
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse-2">
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control input-sm" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Search</button>
-          </form>
-          <button type="button" class="btn btn-default navbar-right" data-toggle="modal" data-target="#loginModal">Log In</button>
-        </div>
-      </div>
-    </nav>
-  {{/if}}
-</header>
+<script src="https://code.jquery.com/jquery-3.0.0.js" integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo=" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript" src="/javascripts/googlemap.js">
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{api}}callback=initMap" async defer></script>
+<div id="map">
+
+</div>
 
 <main>
   {{#unless id}}
-    <!-- if the user is not logged in/there is no id, they still see call to action and description -->
-    <section class="container well well-lg public">
+    <!-- if the user is not logged in -->
+    <section class="container well well-lg public site-description">
       <div class="row">
-        <h3>Welcome to Happy Tracker!</h3>
-        <p>Happy Tracker is a happy hour tracker for Denver neighborhoods. Users can search by neighborhood and location for happy hour details at various venues. Logged in users are able to filter by times, days, and neighborhood. Other features available
-          to logged in users is the ability to save their favorite happy hours so that they are easy to find again.</p>
+        <h1>Welcome to Happy Tracker!</h1>
+        <ul>
+          <p>A collection of happy hours for Denver neighborhoods</li>
+            <li>Search by neighborhood and location for happy hour details at various venues</li>
+            <li>Filter by times, days, and neighborhood.</li>
+            <li>Log in to...</li>
+            <ul>
+              <li>Make a collection of favorite Happy Hours</li>
+              <li>Contribute to Happy Tracker! If you know of a good happy hour, add it to the site!</li>
+            </ul>
+        </ul>
       </div>
       <article class="row">
         <!-- sign up modal -->
         <div class="col-sm-3 col-sm-offset-3 text-center">
-          <p>Experience more features</p>
+          <p id="button-label">Become a User!</p>
           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">
             Sign Up Now
           </button>
@@ -111,7 +66,7 @@
         </div>
         <!-- Login modal -->
         <div class="col-sm-3 text-center">
-          <p>Already a user?</p>
+          <p id="button-label">Already a user?</p>
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#loginModal">Log In Here</button>
           <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel">
             <div class="modal-dialog" role="document">
@@ -147,29 +102,31 @@
   <section class="container">
     <h2>{{neighborhood}}</h2>
     {{#each happyhours}}
-    <div class="row">
-      {{#each this}}
-        <div class="col-sm-3">
-          <div class="thumbnail">
-            <img class="img-responsive venue-img" src="{{this.image_url}}">
-            <div class="caption">
+      <div class="row">
+        {{#each this}}
+          <div class="col-sm-3">
+            <div class="thumbnail">
+              <img class="img-responsive venue-img" src="{{this.image_url}}">
+              <div class="caption">
 
-              <form action="/favorite/{{this.name}}" method="post">
-                <input class="hidden" name="location_id" value="{{this.id}}"></input>
-                <button type="submit" class="btn btn-xs pull-right star">Favorite
-                  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-              </form>
+                <form action="/favorite/{{this.name}}" method="post">
+                  <input class="hidden" name="location_id" value="{{this.id}}"></input>
+                  <button type="submit" class="btn btn-xs pull-right star">Favorite
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                </form>
 
-              <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
-              <!-- <p>Days: {{happy_hour.day}}</p>
+                <a href="/happyhour/{{this.id}}"><h3>{{this.name}}</h3></a>
+                <!-- <p>Days: {{happy_hour.day}}</p>
               <p>Time {{happy_hour.start}} to {{happy_hour.end}}</p> -->
-              <a href="{{this.url}}"><p>{{this.url}}</p></a>
+                <a href="{{this.url}}">
+                  <p>{{this.url}}</p>
+                </a>d
+              </div>
             </div>
           </div>
-        </div>
         {{/each}}
-    </div>
+      </div>
     {{/each}}
   </section>
 </main>

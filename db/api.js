@@ -14,11 +14,13 @@ module.exports = {
             })
     },
     Favorite: {
-      addUserFavorite: (location, user) => knex('favorite').insert({
-          location_id: location,
-          contributor_id: user
+        addUserFavorite: (location, user) => knex('favorite').insert({
+            location_id: location,
+            contributor_id: user
         }),
-      getNeighborhoodByLocation: (location_name)=> knex('location').select('neighborhood_name').where({name: location_name}).first()
+        getNeighborhoodByLocation: (location_name) => knex('location').select('neighborhood_name').where({
+            name: location_name
+        }).first()
     },
     Location: {
         getLocations: () => knex('location'),
@@ -29,31 +31,35 @@ module.exports = {
             address: body.address,
             contributor_id: id,
             neighborhood_name: body.neighborhood_name
-        }, 'id')
+        }, 'id').first()
     },
 
     Neighborhood: {
         getNeighborhoods: () => knex('neighborhood'),
         findNeighborhoodsByName: name => knex('neighborhood').where('name', name),
         deleteLocation: (id) => {
-          router.get('/:id/delete', function (req, res){
-            knex('location')
-            .where({location_id: req.params.id})
-            .andWhere({contributor_id: req.session.userID}).del()
-            .then(function(){
-              res.redirect('/');
+            router.get('/:id/delete', function(req, res) {
+                knex('location')
+                    .where({
+                        location_id: req.params.id
+                    })
+                    .andWhere({
+                        contributor_id: req.session.userID
+                    }).del()
+                    .then(function() {
+                        res.redirect('/');
+                    });
             });
-          });
         }
     },
     HappyHour: {
         getInfoByHoodName: name => knex('neighborhood').where('name', name).first()
-            .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName))
-    },
-    addHappyHour: body => knex('happy_hour').insert({
-                    day: body.day,
-                    start_time: body.start,
-                    end_time: body.end,
-                    location_id: id[0]
-    })
+            .then(oneHood => knex('location').where('location.neighborhood_name', oneHood.name).orderBy('name', 'asc').then(locationsByHoodName => locationsByHoodName)),
+        addHappyHour: (body, id) => knex('happy_hour').insert({
+            day: body.day,
+            start_time: body.start,
+            end_time: body.end,
+            location_id: id
+        })
+    }
 };

@@ -1,7 +1,8 @@
 let locations;
 
-$.get
-console.log(locations);
+$.get('/getLocations').then(locations => {
+    console.log(locations);
+})
 
 function initMap() {
     var myLatLng = {

@@ -11,8 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getLocations', function(req, res, next) {
     db.Location.getLocations().then(locations => {
-        console.log(locations, 'HELLLO &&&&&&&&&');
-        res.send(locations);
+        res.json(locations);
     });
 });
 

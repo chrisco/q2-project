@@ -12,16 +12,6 @@ function initMap() {
     $.get('/neighborhood/get/locations').done(locations => {
             var geocoder = new google.maps.Geocoder();
 
-
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Hello World!'
-            });
-
-            marker.setMap(map);
-
-            var markerArray = [];
             for (let location of locations) {
                 let contentString = `
                     <div class="container infoWindow">
@@ -53,7 +43,6 @@ function initMap() {
                         icon: "http://icons.iconarchive.com/icons/flat-icons.com/flat/24/Beer-icon.png"
                     });
 
-                    markerArray.push(marker);
                     marker.setMap(map);
                     marker.addListener('click', toggleBounce);
 

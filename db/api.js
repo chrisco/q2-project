@@ -23,7 +23,7 @@ module.exports = {
         }).first()
     },
     Location: {
-        getLocations: neighborhood_name => knex('location').where('neighborhood_name', neighborhood_name),
+        getLocations: () => knex('location'),
         addLocation: (body, id) => knex('location').insert({
             name: body.name,
             url: body.url,
@@ -31,7 +31,8 @@ module.exports = {
             address: body.address,
             contributor_id: id,
             neighborhood_name: body.neighborhood_name
-        }, 'id').first()
+        }, 'id').first(),
+        getLocationsByNeighborhood: name => knex('location').where('neighborhood_name', name)
     },
 
     Neighborhood: {

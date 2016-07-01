@@ -10,6 +10,7 @@ function initMap() {
     });
 
     $.get('/neighborhood/get/locations').done(locations => {
+            
             var geocoder = new google.maps.Geocoder();
 
             for (let location of locations) {
